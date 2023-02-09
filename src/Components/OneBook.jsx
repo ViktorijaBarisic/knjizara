@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { useState } from 'react';
 
 const OneBook = ({book, dodajProcitane, izbaciProcitane, dodanoUProcitane}) => {
+  const [hide, setHide] = useState(false);
+
   return (
 
-    <div className="card book">
+    <div className={(book.procitano && !dodanoUProcitane) ? "hide" : "card book"}>
       <div className="card-header">
         <img src={book.slika} alt=""></img>
       </div>
@@ -16,12 +19,10 @@ const OneBook = ({book, dodajProcitane, izbaciProcitane, dodanoUProcitane}) => {
         <br />
         <div>
           {!dodanoUProcitane ? (<> 
-          <button type="button" className="btn btn-custom" onClick={() => {dodajProcitane(book.id); alert("Bravo!!!")}} >
+          <button type="button" className="btn btn-custom" onClick={() => {dodajProcitane(book.id); setHide(true); alert("Bravo!!!")}} >
           Pročitano
         </button>
-        <button type="button" className="btn btn-custom obrisi">
-          Obriši
-        </button></>) 
+        </>) 
         :  (<button type="button" className="btn btn-custom obrisi"  onClick={() => {izbaciProcitane(book.id); alert("Knjiga je uklonjena")}}>
           Ukloni
         </button>)}
