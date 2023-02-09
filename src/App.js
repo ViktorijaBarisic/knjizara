@@ -3,6 +3,8 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Books from './Components/Books';
+import DodajNovuKnjigu from './Components/DodajNovuKnjigu';
+import { BrowserRouter, Routes, Route } from "react-router-dom"; 
 
 function App() {
   const books = [
@@ -54,16 +56,36 @@ function App() {
   
   
   return (
-    <div>
-
- <Navbar></Navbar>
- <Books books = {books} />
- <Footer></Footer>
-
-
-    </div>
+    
+    <BrowserRouter>
+    <Navbar />
+    <Routes>
+       <Route
+        path="/"
+        element={<Books books={books} />}
+      /> 
+      {/* <Route
+      addFavorite={addFavorite} ide u elemnt kraj books
+        path="/omiljeno"
+        element={<Omiljeno proizvodi={fav} removeFavorite={removeFavorite} />}
+      /> */}
+      <Route
+        path="/novaKnjiga"
+        element={
+          <DodajNovuKnjigu
+            // handleInput={handleInput}
+            // handleDodaj={handleDodaj}
+            // duzinaNiza={duzinaNiza}
+          />
+        }
+      />
+    </Routes>
+    <Footer />
+  </BrowserRouter>
     
   );
 }
+
+
 
 export default App;

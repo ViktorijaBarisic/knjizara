@@ -1,17 +1,21 @@
-import React from 'react'
+import React from 'react';
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
     
         <div className="navbar navbar-custom header"  >
-            <a className="navbar-brand" href="">
+            <Link to="/" className="navbar-brand" >
             Knjižara <strong>
                     Knjige
                 </strong>
-            </a> 
+            
+            </Link>
             <div>
-            <a className="nav-link" href=""> Početna </a>
-            <a className="nav-link" href=""> Dodaj novu knjigu </a>
+            <Link to="/novaknjiga">Dodaj novu knjigu</Link> 
+
+            <Link to="/" className="nav-link" > Početna </Link>
+
            
     
             </div>
