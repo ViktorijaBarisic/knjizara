@@ -12,11 +12,11 @@ function Navbar() {
             
             </Link>
             <div>
-            <Link to="/novaknjiga">Dodaj novu knjigu</Link> 
+            <Link to="/novaknjiga" className="nav-link">Dodaj novu knjigu</Link> 
 
             <Link to="/" className="nav-link" > Početna </Link>
 
-           
+            <Link to="/procitane" className="nav-link">Pročitane knjige</Link> 
     
             </div>
         

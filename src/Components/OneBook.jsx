@@ -1,6 +1,6 @@
 import React from 'react'
 
-const OneBook = ({book}) => {
+const OneBook = ({book, dodajProcitane, izbaciProcitane, dodanoUProcitane}) => {
   return (
 
     <div className="card book">
@@ -14,16 +14,23 @@ const OneBook = ({book}) => {
         <br />
         <p className="opis">{book.opis}</p>
         <br />
-        <h4> Cijena: </h4>
-        <h4 className="cijena">
-          <strong>{book.cijena} din </strong>
-        </h4>
-        <button type="button" className="btn btn-custom">
-          Uredi
+        <div>
+          {!dodanoUProcitane ? (<> 
+          <button type="button" className="btn btn-custom" onClick={() => {dodajProcitane(book.id); alert("Bravo!!!")}} >
+          Pročitano
         </button>
         <button type="button" className="btn btn-custom obrisi">
           Obriši
-        </button>
+        </button></>) 
+        :  (<button type="button" className="btn btn-custom obrisi"  onClick={() => {izbaciProcitane(book.id); alert("Knjiga je uklonjena")}}>
+          Ukloni
+        </button>)}
+
+
+        </div>
+
+
+  
       </div>
     </div>
   )

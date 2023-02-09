@@ -4,10 +4,15 @@ import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Books from './Components/Books';
 import DodajNovuKnjigu from './Components/DodajNovuKnjigu';
+import ProcitaneKnjige from './Components/ProcitaneKnjige';
 import { BrowserRouter, Routes, Route } from "react-router-dom"; 
+import { useState } from "react";
 
 function App() {
-  const books = [
+
+  const [procitane, setProcitane] = useState([]);
+
+  const [books, setBooks] = useState([
   { 
 
    id:1,  
@@ -16,7 +21,7 @@ function App() {
    kategorija:"roman",
    slika:"https://www.delfi.rs/_img/artikli/2016/04/na_drini_cuprija_vv.jpg",
    opis:"Na Drini ćuprija je roman srpskog književnika i nobelovca Ive Andrića. Roman pripoveda o građenju mosta preko reke Drine u bosanskom gradu Višegradu.", 
-   cijena:2000, 
+   procitano:false, 
     
   },
   { 
@@ -27,8 +32,7 @@ function App() {
     kategorija:"moderna psihologija",
     slika:"https://www.laguna.rs/_img/korice/4291/dete_u_tebi_mora_da_pronadje_svoj_zavicaj-stefani_stal_v.jpg",
     opis:"Ključ za rešavanje (skoro) svih problema.Svetski bestseler iz oblasti psihologije", 
-    cijena:1000, 
-       
+    procitano:false,        
   },
   { 
 
@@ -38,8 +42,7 @@ function App() {
     kategorija:"edukativni",
     slika:"https://www.laguna.rs/_img/korice/2245/serviraj_za_pobedu_v.jpg",
     opis:"Četrnaestodnevni plan bezglutenske ishrane za vrhunska fizička dostignuća i mentalnu snagu.", 
-    cijena:499, 
-     
+    procitano:false,      
    },
    { 
  
@@ -49,11 +52,32 @@ function App() {
      kategorija:"marketing",
      slika:"https://www.laguna.rs/_img/korice/5287/knjiga_o_netfliksu_v.jpg",
      opis:"Saznajte sve od tvorca lično!VREME JE DA SE RADI DRUGAČIJE", 
-     cijena:1799, 
-        
+     procitano:false,         
    },   
-];
+]);
   
+function dodajProcitane(id) {
+  books.forEach((i) => {
+    if (i.id === id) {
+      i.procitano = true;
+    }
+  });
+  refreshProcitane();
+}
+
+function izbaciProcitane(id) {
+  books.forEach((i) => {
+    if (i.id === id) {
+      i.procitano = false;
+    }
+  });
+  refreshProcitane();
+}
+
+function refreshProcitane() {
+  let procitaneKnjige = books.filter((book) => book.procitano === true);
+  setProcitane(procitaneKnjige);
+}
   
   return (
     
@@ -62,13 +86,12 @@ function App() {
     <Routes>
        <Route
         path="/"
-        element={<Books books={books} />}
+        element={<Books books={books} dodajProcitane={dodajProcitane} />}
       /> 
-      {/* <Route
-      addFavorite={addFavorite} ide u elemnt kraj books
-        path="/omiljeno"
-        element={<Omiljeno proizvodi={fav} removeFavorite={removeFavorite} />}
-      /> */}
+       <Route
+        path="/procitane"
+        element={<ProcitaneKnjige procitane={procitane} izbaciProcitane={izbaciProcitane} />}
+      /> 
       <Route
         path="/novaKnjiga"
         element={
