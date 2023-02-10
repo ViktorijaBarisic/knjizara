@@ -78,6 +78,16 @@ function refreshProcitane() {
   let procitaneKnjige = books.filter((book) => book.procitano === true);
   setProcitane(procitaneKnjige);
 }
+
+let duzinaNiza = books.length;
+
+  function handleDodaj(userData) {
+    let noviNiz = books;
+    noviNiz[noviNiz.length] = userData;
+    setBooks(noviNiz);
+    console.log(books);
+  }
+
   
   return (
     
@@ -93,12 +103,12 @@ function refreshProcitane() {
         element={<ProcitaneKnjige procitane={procitane} izbaciProcitane={izbaciProcitane} />}
       /> 
       <Route
-        path="/novaKnjiga"
+        path="/novaknjiga"
         element={
           <DodajNovuKnjigu
             // handleInput={handleInput}
-            // handleDodaj={handleDodaj}
-            // duzinaNiza={duzinaNiza}
+            handleDodaj={handleDodaj}
+            duzinaNiza={duzinaNiza}
           />
         }
       />
