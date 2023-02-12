@@ -106,7 +106,6 @@ let duzinaNiza = books.length;
         path="/novaknjiga"
         element={
           <DodajNovuKnjigu
-            // handleInput={handleInput}
             handleDodaj={handleDodaj}
             duzinaNiza={duzinaNiza}
           />
