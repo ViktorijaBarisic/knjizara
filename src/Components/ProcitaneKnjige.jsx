@@ -6,7 +6,7 @@ function Procitano({ procitane, izbaciProcitane }) {
   return (
     <>
       <div className="naslov-fav">
-        <h2>Pročitane knjige</h2>
+       
         <div className="crta"></div>
       </div>
       <div className="container" id="kontejner">
